@@ -107,11 +107,11 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | How can we represent the system in an **architecture diagram**, which gives information both about the Docker containers, the communication protocols and the commands? |
 | | *Insert your diagram here...* |
 |Question | Who is going to **send UDP datagrams** and **when**? |
-| | *Enter your response here...* |
+| | The Musicians send UDP datagramms to the Auditor, at the start of the application, every second. |
 |Question | Who is going to **listen for UDP datagrams** and what should happen when a datagram is received? |
-| | *Enter your response here...* |
+| | The Auditor listen to the Musicians playing their "sound". When he recieve a datagramm, the Auditor should print informations at the screen (when connected to it via telnet) like which instrument is playing, in which port, etc., in JSON format. |
 |Question | What **payload** should we put in the UDP datagrams? |
-| | *Enter your response here...* |
+| | The Musicians have to send what type of sound they make (see **Instruments and Sounds**) _#TO COMPLETE_. |
 |Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures? |
 | | *Enter your response here...* |
 
@@ -121,7 +121,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | In a JavaScript program, if we have an object, how can we **serialize it in JSON**? |
-| | *Enter your response here...*  |
+| | With the method JSON.stringify() |
 |Question | What is **npm**?  |
 | | *Enter your response here...*  |
 |Question | What is the `npm install` command and what is the purpose of the `--save` flag?  |

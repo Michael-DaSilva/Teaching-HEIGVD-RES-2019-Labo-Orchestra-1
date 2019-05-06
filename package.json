@@ -1,0 +1,30 @@
+{
+  "name": "teaching-heigvd-res-2019-labo-orchestra-1",
+  "version": "0.1.0",
+  "description": "* **Every student** must do the implementation and have a repo with the code at the end of the process.\r * It is up to you if you want to fork this repo, or if you prefer to work in a private repo. However, you have to **use exactly the same directory structure for the validation procedure to work**. \r * **There will be no grade for this lab. However, if you work on it seriously, the next challenge will be very easy (just be careful: the challenge will be done on a short period, so don't be late!)**\r * We expect that you will have more issues and questions than with other labs (because we have a left some questions open on purpose). Please ask your questions on Telegram, so that everyone in the class can benefit from the discussion.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Michael-DaSilva/Teaching-HEIGVD-RES-2019-Labo-Orchestra-1.git"
+  },
+  "author": "Michael da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Michael-DaSilva/Teaching-HEIGVD-RES-2019-Labo-Orchestra-1/issues"
+  },
+  "homepage": "https://github.com/Michael-DaSilva/Teaching-HEIGVD-RES-2019-Labo-Orchestra-1#readme",
+  "dependencies": {
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-mocha": "^5.3.0",
+    "mocha": "^6.1.4"
+  }
+}
