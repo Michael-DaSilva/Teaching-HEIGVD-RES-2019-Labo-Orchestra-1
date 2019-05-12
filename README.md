@@ -129,11 +129,11 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | How can we use the `https://www.npmjs.com/` web site?  |
 | | *Enter your response here...*  |
 |Question | In JavaScript, how can we **generate a UUID** compliant with RFC4122? |
-| | *Enter your response here...*  |
+| | With using the uuid package available in `www.nmpjs.com`  |
 |Question | In Node.js, how can we execute a function on a **periodic** basis? |
-| | *Enter your response here...*  |
+| | Use the function setTimout(function, time in milliseconds)  |
 |Question | In Node.js, how can we **emit UDP datagrams**? |
-| | *Enter your response here...*  |
+| | With the default package `dgram` in Node.js  |
 |Question | In Node.js, how can we **access the command line arguments**? |
 | | *Enter your response here...*  |
 
