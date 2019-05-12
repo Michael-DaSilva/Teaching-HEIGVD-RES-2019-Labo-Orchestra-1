@@ -111,9 +111,9 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | Who is going to **listen for UDP datagrams** and what should happen when a datagram is received? |
 | | The Auditor listen to the Musicians playing their "sound". When he recieve a datagramm, the Auditor should print informations at the screen (when connected to it via telnet) like which instrument is playing, in which port, etc., in JSON format. |
 |Question | What **payload** should we put in the UDP datagrams? |
-| | The Musicians have to send what type of sound they make (see **Instruments and Sounds**) _#TO COMPLETE_. |
+| | The Musicians have to send what type of sound they make (see **Instruments and Sounds**). |
 |Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures? |
-| | *Enter your response here...* |
+| | The sender have the uuid, the time of sending the packet, and the sound of the instrument choosed. The receiver only need the uuid and the time of the packet. The sender "update" his packet every he send it. The receiver "update" the last time he received a packet from a musician. |
 
 
 ## Task 2: implement a "musician" Node.js application
@@ -123,19 +123,19 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | In a JavaScript program, if we have an object, how can we **serialize it in JSON**? |
 | | With the method JSON.stringify() |
 |Question | What is **npm**?  |
-| | *Enter your response here...*  |
+| | like maven, it's a that regroup libraries and allow to use them.  |
 |Question | What is the `npm install` command and what is the purpose of the `--save` flag?  |
-| | *Enter your response here...*  |
+| | `npm install` is a command that allow to install available modules made by the community. The option `--save` will let know the next person to try your application which module you installed.  |
 |Question | How can we use the `https://www.npmjs.com/` web site?  |
-| | *Enter your response here...*  |
+| | There is a search bar. You just have to type what you searching for (example: the lab use a module called `uuid` -> you just have to type `uuid` on the search bar and select the module you want to use).  |
 |Question | In JavaScript, how can we **generate a UUID** compliant with RFC4122? |
-| | With using the uuid package available in `www.nmpjs.com`  |
+| | With using the [uuid](https://www.npmjs.com/package/uuid) package available in `www.npmjs.com`  |
 |Question | In Node.js, how can we execute a function on a **periodic** basis? |
-| | Use the function setTimout(function, time in milliseconds)  |
+| | Use the function setTimout(function, time in milliseconds) or setInterval() |
 |Question | In Node.js, how can we **emit UDP datagrams**? |
 | | With the default package `dgram` in Node.js  |
 |Question | In Node.js, how can we **access the command line arguments**? |
-| | *Enter your response here...*  |
+| | `process.argv.slice(2)` (return the parameter n°2)  |
 
 
 ## Task 3: package the "musician" app in a Docker image
@@ -143,17 +143,17 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | How do we **define and build our own Docker image**?|
-| | *Enter your response here...*  |
+| | You have to create a Dockerfile in the directory where is the application to put on Docker (see the `DOckerfile` file in docker/image-audition or docker/image-musician for examples). Then you have to put the following command: `docker build -t name_of_your_image .` This will build a docker image with the file in the current repository.  |
 |Question | How can we use the `ENTRYPOINT` statement in our Dockerfile?  |
-| | *Enter your response here...*  |
+| | `ENTRYPOINT["node","directory/where/is/the/app.js"]`   |
 |Question | After building our Docker image, how do we use it to **run containers**?  |
-| | *Enter your response here...*  |
+| | the command: `docker run name_of_your_image instrument` where in place of `instrument` you type the name of the instrument available  |
 |Question | How do we get the list of all **running containers**?  |
-| | *Enter your response here...*  |
+| | command: `docker ps`  |
 |Question | How do we **stop/kill** one running container?  |
-| | *Enter your response here...*  |
+| | To stop: `docker stop container_id`, to kill: `docker kill container_id`  |
 |Question | How can we check that our running containers are effectively sending UDP datagrams?  |
-| | *Enter your response here...*  |
+| | We could print the packet sent by the musician at the same time as he sent it to the screen (for that: `console.log(message)`)  |
 
 
 ## Task 4: implement an "auditor" Node.js application
@@ -161,15 +161,15 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | ---  |
 |Question | With Node.js, how can we listen for UDP datagrams in a multicast group? |
-| | *Enter your response here...*  |
+| | `serverUDP.bind(port, function(){serverUDP.addMembership(ip_address);});`  |
 |Question | How can we use the `Map` built-in object introduced in ECMAScript 6 to implement a **dictionary**?  |
-| | *Enter your response here...* |
+| | We can put on a map the uuid as the key and the time of the last packet sent as a value (to check the last time a packet from the uuid was sent) |
 |Question | How can we use the `Moment.js` npm module to help us with **date manipulations** and formatting?  |
-| | *Enter your response here...* |
+| | `moment.duration(x.diff(y))` to know the difference of time between two times. `moment().format();` to get the desired format of time (ISO 8601) |
 |Question | When and how do we **get rid of inactive players**?  |
-| | *Enter your response here...* |
+| | Every 6 seconds we check the map containing the active musicians and we check if the time stored in the map is bigger than 6 seconds (if the last time the musician sent a packet is bigger than 6 seconds). Then we proceed to delete from the map, using the uuid of the musician |
 |Question | How do I implement a **simple TCP server** in Node.js?  |
-| | *Enter your response here...* |
+| | `serverTCP = net.createServer()` and `serverTCP.listen(port);` (in `.listen()`, if you don't assign a IP address the localhost IP will be used) |
 
 
 ## Task 5: package the "auditor" app in a Docker image
@@ -177,7 +177,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | How do we validate that the whole system works, once we have built our Docker image? |
-| | *Enter your response here...* |
+| | We run it like the following: `docker run -p 2205:2205 name_container`. This will run the container with the port open to have access to the TCP server with telnet. We have to run some couple of musicians and test by killing some and creating some. In the same we have to check the packet received by the command `telnet localhost port` to see what the TCP server is sending. |
 
 
 ## Constraints
